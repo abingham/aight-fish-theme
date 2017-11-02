@@ -3,7 +3,6 @@ function fish_prompt
     # Keep the command executed status
     set --local last_status $status
 
-    show_path
     show_status $last_status
 end
 
@@ -17,7 +16,7 @@ function show_path
     echo -en (prompt_pwd)
 
     set_color blue
-    echo -en "] "
+    echo -en "]"
 end
 
 
@@ -30,7 +29,7 @@ function show_status -a last_status
     end
 
     set_color $current_color
-    echo -en ": "
+    echo -en "\$ "
     set_color normal
 end
 
@@ -44,7 +43,7 @@ function fish_right_prompt
 
     show_virtualenv_name
     show_git_info
-    echo -en (date +%H:%M:%S)
+    show_path
 
     set_color normal
 end
