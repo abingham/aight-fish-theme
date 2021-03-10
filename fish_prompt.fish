@@ -61,6 +61,7 @@ function show_git_info
 
     set --local LIMBO /dev/null
     set --local git_status (git status --porcelain 2> $LIMBO)
+    set --local git_stash (git stash list 2> $LIMBO)
     set --local dirty ""
 
     [ $status -eq 128 ]; and return  # Not a repository? Nothing to do
@@ -76,7 +77,7 @@ function show_git_info
     end
 
     # If there is stashed modifications on repository, add '^' to dirty
-    if not [ -z (git stash list) ]
+    if not [ -z (echo "$git_stash") ]
         set dirty "$dirty^"
     end
 
