@@ -77,7 +77,7 @@ function show_git_info
     end
 
     # If there is stashed modifications on repository, add '^' to dirty
-    if not [ -z (echo "$git_stash") ]
+    if not [ -z (echo "$git_stash" | head -n1) ]
         set dirty "$dirty^"
     end
 
